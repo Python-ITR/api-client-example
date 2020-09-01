@@ -9,8 +9,15 @@
   <body>
     <div id="app"></div>
     <script id="story_card_tpl" type="text/template">
-      <div>
-          <h1><%= title %></h1>
+      <div class="story_card">
+          <h1 class="story_card__title"><%= title %></h1>
+          <p class="story_card__description">
+            <%= short_description %>
+          </p>
+          <ul class="story_card__coords">
+              <li>Широта: <%= lat %></li>
+              <li>Долгота: <%= lng %></li>
+          </ul>
       </div>
     </script>
   </body>
