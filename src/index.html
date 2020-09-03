@@ -7,18 +7,15 @@
     <script src="./index.js"></script>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+        <div class="container">
+            <div class="row">
+
+            </div>
+        </div>
+        <div id="map_holder" class="container"></div>
+    </div>
     <script id="story_card_tpl" type="text/template">
-      <div class="story_card">
-          <h1 class="story_card__title"><%= title %></h1>
-          <p class="story_card__description">
-            <%= short_description %>
-          </p>
-          <ul class="story_card__coords">
-              <li>Широта: <%= lat %></li>
-              <li>Долгота: <%= lng %></li>
-          </ul>
-      </div>
     </script>
   </body>
 </html>
