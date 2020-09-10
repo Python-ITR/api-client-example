@@ -1,3 +1,7 @@
 #map_holder {
-    height: 500px;
+  height: 500px;
+}
+
+.story_form .story_form__map {
+  height: 300px;
 }

@@ -8,14 +8,62 @@
   </head>
   <body>
     <div id="app">
-        <div class="container">
-            <div class="row">
-
+      <div class="container">
+        <h1>Cards</h1>
+        <div id="cards_list" class="row"></div>
+      </div>
+      <div class="container">
+        <h1>Map</h1>
+        <div id="map_holder"></div>
+      </div>
+      <div class="container">
+        <h1>Form</h1>
+        <form class="story_form form-row" action="/create/story" enctype="multipart/form-data" method="POST">
+          <div class="col-6">
+            <div class="form-group">
+              <input
+                class="form-control"
+                type="text"
+                name="title"
+                placeholder="Title"
+              />
+              <input
+                class="form-control"
+                type="file"
+                name="file"
+                placeholder="Title"
+              />
             </div>
-        </div>
-        <div id="map_holder" class="container"></div>
+            <div class="form-group">
+              <input
+                class="form-control"
+                type="text"
+                name="short_description"
+                placeholder="Short description"
+              />
+            </div>
+            <div class="form-group">
+              <textarea
+                class="form-control"
+                name="body"
+                placeholder="Your story"
+              ></textarea>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group d-none">
+              <input class="form-control" type="text" name="lat" />
+            </div>
+            <div class="form-group d-none">
+              <input type="text" name="lng" />
+            </div>
+            <div class="story_form__map"></div>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            Create story
+          </button>
+        </form>
+      </div>
     </div>
-    <script id="story_card_tpl" type="text/template">
-    </script>
   </body>
 </html>
