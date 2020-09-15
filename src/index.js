@@ -48,31 +48,45 @@ function addNewStoryMarker(map, story, icon) {
  * @return {Promise} request result
  */
 function fetchCards() {
-  return axios.get("http://localhost:9999/api/stories").then((res) => {
+  return axios.get("/api/stories").then((res) => {
     return res.data;
   });
 }
 
 function initStoryForm(form_el) {
   const map_holder = form_el.querySelector(".story_form__map");
-  const lat_input = form_el.querySelector('[name="lat"]')
-  const lng_input = form_el.querySelector('[name="lng"]')
+  const lat_input = form_el.querySelector('[name="lat"]');
+  const lng_input = form_el.querySelector('[name="lng"]');
   // create map
   const { map, icon } = createMap(map_holder);
   // create marker
   const marker = L.marker(DEFAULT_COORDS, { icon, draggable: true });
   marker.on("move", (e) => {
-    lat_input.value = e.latlng.lat
-    lng_input.value = e.latlng.lng
+    lat_input.value = e.latlng.lat;
+    lng_input.value = e.latlng.lng;
   });
   marker.addTo(map);
+  // обработка события submit
+  form_el.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const inputs = Array.from(form_el.elements).filter((control) =>
+      ["TEXTAREA", "INPUT"].includes(control.tagName)
+    );
+    const form_data = inputs.reduce((acc, el) => {
+      acc[el.name] = el.value;
+      return acc;
+    }, {});
+    axios.post("/api/stories", form_data).then((response) => {
+      console.log(response);
+      window.location.reload();
+    });
+  });
 }
 
 function main() {
   const { map, icon } = createMap(document.getElementById("map_holder"));
   initStoryForm(document.querySelector(".story_form"));
   fetchCards().then((stories) => {
-    console.log(stories);
     for (let i = 0; i < stories.length; i++) {
       addNewCard(stories[i]);
       addNewStoryMarker(map, stories[i], icon);
